@@ -27,9 +27,7 @@
         --green: #8ef0b2;
         --red: #ff9b8d;
         --warn: #ffd486;
-        --display:
-          -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
-          sans-serif;
+        --display: Georgia, "Times New Roman", Times, serif;
         --sans:
           -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
           ui-sans-serif, system-ui, sans-serif;
@@ -47,7 +45,7 @@
 
       html {
         min-height: 100%;
-        background: #46423b;
+        background: #101417;
       }
 
       body {
@@ -58,26 +56,13 @@
         overflow-y: auto;
         background:
           linear-gradient(
-            rgba(15, 18, 23, 0.24),
-            rgba(15, 18, 23, 0.24)
+            180deg,
+            rgba(4, 8, 12, 0.08) 0%,
+            rgba(4, 8, 12, 0.14) 42%,
+            rgba(4, 8, 12, 0.36) 100%
           ),
-          linear-gradient(
-            135deg,
-            rgba(236, 226, 204, 0.92) 0%,
-            rgba(89, 103, 95, 0.9) 28%,
-            rgba(184, 169, 142, 0.82) 48%,
-            rgba(70, 64, 56, 0.9) 66%,
-            rgba(216, 207, 184, 0.86) 100%
-          ),
-          linear-gradient(
-            52deg,
-            rgba(40, 46, 38, 0.88) 0 18%,
-            rgba(255, 255, 255, 0.52) 18% 28%,
-            rgba(88, 83, 74, 0.78) 28% 44%,
-            rgba(224, 218, 202, 0.7) 44% 56%,
-            rgba(77, 70, 60, 0.86) 56% 100%
-          ),
-          #46423b;
+          url("/nomad-mountain-lake.jpg") center / cover no-repeat,
+          #101417;
         color: var(--ink);
         font: 13px/1.5 var(--sans);
         letter-spacing: 0;
@@ -110,22 +95,18 @@
         pointer-events: none;
         opacity: 0.78;
         transform: translate3d(var(--drift-x), var(--drift-y), 0);
-        filter: blur(34px) saturate(1.18);
+        filter: saturate(1.08);
         background:
-          linear-gradient(
-            125deg,
-            rgba(255, 255, 255, 0.34) 0 12%,
-            rgba(255, 255, 255, 0) 12% 26%,
-            rgba(35, 44, 33, 0.56) 26% 44%,
-            rgba(255, 255, 255, 0.2) 44% 56%,
-            rgba(104, 83, 66, 0.52) 56% 100%
+          radial-gradient(
+            circle at var(--bg-x) var(--bg-y),
+            rgba(255, 255, 255, 0.2),
+            rgba(255, 255, 255, 0) 28%
           ),
           linear-gradient(
-            35deg,
-            rgba(39, 49, 45, 0.7),
-            rgba(225, 217, 196, 0.55) 38%,
-            rgba(75, 70, 62, 0.72) 67%,
-            rgba(237, 230, 213, 0.48)
+            180deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(255, 255, 255, 0) 36%,
+            rgba(0, 0, 0, 0.24)
           );
       }
 
@@ -136,13 +117,12 @@
         z-index: -1;
         pointer-events: none;
         opacity: 0.62;
-        background:
-          linear-gradient(
-            155deg,
-            rgba(255, 255, 255, 0.2),
-            rgba(255, 255, 255, 0) 24% 74%,
-            rgba(0, 0, 0, 0.2)
-          );
+        background: linear-gradient(
+          155deg,
+          rgba(255, 255, 255, 0.2),
+          rgba(255, 255, 255, 0) 24% 74%,
+          rgba(0, 0, 0, 0.2)
+        );
       }
 
       .masthead {
@@ -152,10 +132,8 @@
 
       h1 {
         margin: 0;
-        color: rgba(255, 255, 255, 0.96);
-        font: 650 25px/1 var(--display);
-        letter-spacing: -0.02em;
-        text-shadow: 0 1px 22px rgba(255, 255, 255, 0.18);
+        color: var(--ink);
+        font: 500 28px/1 var(--display);
       }
 
       .grid {
@@ -696,6 +674,9 @@
       <select id="ownerMode" hidden aria-hidden="true">
         <option value="phantom" selected>Phantom</option>
       </select>
+      <select id="cluster" hidden aria-hidden="true">
+        <option value="localnet" selected>localnet</option>
+      </select>
 
       <section id="walletGate" class="wallet-gate">
         <div class="wallet-head">
@@ -764,23 +745,6 @@
         </section>
 
         <div id="workspace" class="grid" hidden>
-          <section class="panel">
-            <div class="panel-body">
-              <div class="panel-head">
-                <h2>Network</h2>
-                <span class="tag">settings</span>
-              </div>
-              <div class="field">
-                <label for="cluster">Cluster</label>
-                <select id="cluster">
-                  <option value="localnet" selected>localnet</option>
-                  <option value="devnet">devnet</option>
-                  <option value="mainnet-beta">mainnet-beta</option>
-                </select>
-              </div>
-            </div>
-          </section>
-
           <section class="panel">
             <div class="panel-body">
               <div class="panel-head">
