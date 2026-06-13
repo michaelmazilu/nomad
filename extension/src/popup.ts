@@ -10,6 +10,7 @@ import type {
   Response,
   TxResult,
 } from "./messages";
+import { DEMO_PHANTOM_LOGIN } from "./config";
 
 interface PhantomProvider {
   isPhantom?: boolean;
@@ -241,12 +242,51 @@ async function ensureAgentAfterWalletConnect(): Promise<void> {
   log(`agent ready: ${agentPublicKey}`);
 }
 
+const wait = (ms: number): Promise<void> =>
+  new Promise((resolve) => window.setTimeout(resolve, ms));
+
+function setDemoPhantomPhase(phase: "securing" | "verifying" | "ready"): void {
+  setPhantomAction(phase);
+}
+
 el("connectOwner").addEventListener("click", () =>
   withErrors(async () => {
     const button = el<HTMLButtonElement>("connectOwner");
     let keepAction = false;
     button.disabled = true;
     try {
+      if (DEMO_PHANTOM_LOGIN.enabled) {
+        setDemoPhantomPhase("securing");
+        log("demo mode: restoring Phantom session");
+        await wait(DEMO_PHANTOM_LOGIN.delayMs * 0.36);
+        setDemoPhantomPhase("verifying");
+        await wait(DEMO_PHANTOM_LOGIN.delayMs * 0.42);
+        setDemoPhantomPhase("ready");
+        await wait(DEMO_PHANTOM_LOGIN.delayMs * 0.22);
+        devWalletSkipped = true;
+        const o: OwnerInfo = {
+          kind: "phantom",
+          ownerPublicKey: DEMO_PHANTOM_LOGIN.publicKey,
+          balanceSol: 2,
+          providerKind: "injected",
+          walletCluster: null,
+        };
+        applyOwnerInfo(o);
+        if (hasExtensionRuntime()) {
+          try {
+            await ensureAgentAfterWalletConnect();
+          } catch (e) {
+            log(
+              `error: agent sync failed: ${e instanceof Error ? e.message : String(e)}`,
+            );
+          }
+        }
+        setPhantomAction("Connected", 1500);
+        keepAction = true;
+        log(`demo Phantom session restored: ${o.ownerPublicKey}`);
+        return;
+      }
+
       if (!hasExtensionRuntime()) {
         const provider = getPhantomProvider();
         if (!provider) {
