@@ -455,7 +455,7 @@ async function handle(msg: Msg): Promise<unknown> {
       } satisfies AttemptResult;
     }
     case "AGENT_GET_PUBLIC_KEY":
-      return { agentPublicKey: await agent.getPublicKey() };
+      return { agentPublicKey: await agent.getOrCreate() };
 
     case "AGENT_SIGN_MESSAGE":
       return await agent.signMessage(msg.message);
