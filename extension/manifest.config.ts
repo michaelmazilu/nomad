@@ -19,12 +19,12 @@ const sponsorHosts = hostPermissionFor(process.env.VITE_NOMAD_SPONSOR_URL);
 
 export default defineManifest({
   manifest_version: 3,
-  name: "Nomad",
+  name: "nomad",
   version: "0.1.0",
   description:
     "Create an agent identity and manage its on-chain Nomad permission passport.",
   action: {
-    default_title: "Nomad",
+    default_title: "nomad",
   },
   side_panel: {
     default_path: "src/popup.html",

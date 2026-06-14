@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Nomad</title>
+    <title>nomad</title>
     <style>
       :root {
         color-scheme: dark;
@@ -25,7 +25,9 @@
         --green: #8ef0b2;
         --red: #ff9b8d;
         --warn: #ffd486;
-        --display: Georgia, "Times New Roman", Times, serif;
+        --display:
+          "Bodoni 72", "Bodoni 72 Display", Didot, "Hoefler Text",
+          "Times New Roman", serif;
         --sans:
           -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
           ui-sans-serif, system-ui, sans-serif;
@@ -142,7 +144,8 @@
       h1 {
         margin: 0;
         color: var(--ink);
-        font: 500 27px/1 var(--display);
+        font: 400 42px/0.94 var(--display);
+        letter-spacing: 0;
       }
 
       .grid {
@@ -944,7 +947,7 @@
   <body>
     <main class="shell">
       <header class="masthead">
-        <h1 id="nomad-title">Nomad</h1>
+        <h1 id="nomad-title">nomad</h1>
       </header>
 
       <section class="wallet-gate">
