@@ -12,7 +12,6 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "@agent-passport/sdk": "*",
     "@solana/web3.js": "^1.98.0",
     "next": "^15.3.0",
     "react": "^19.0.0",

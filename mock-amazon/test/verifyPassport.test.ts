@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { Keypair } from "@solana/web3.js";
-import type { Passport } from "@agent-passport/sdk";
+import type { Passport } from "../lib/nomadPassport";
 import {
   verifyPassport,
   PURCHASE_ACTION,

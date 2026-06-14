@@ -23,7 +23,7 @@ import {
   type Cluster,
   type ClusterConfig,
   type Passport,
-} from "@agent-passport/sdk";
+} from "./nomadPassport";
 
 /** The scope a checkout/purchase requires — a real Nomad action string. */
 export const PURCHASE_ACTION = "payments.charge";
